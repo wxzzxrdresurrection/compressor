@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>Compresor de imágenes</title>
+  </head>
+  <body>
+    <div class="sidenav">
+      <h3>Mis imágenes</h3>
+      <div id="preview">
+        
+      </div> 
+    </div>
+    <div class="main">
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <div class="drop-area">
+            <h2>Arrastra y suelta imágenes</h2>
+            <span>o</span>
+            <button>Selecciona tus archivos</button>
+            <input type="file" name="" id="input-file" hidden multiple>
+        </div>
+        <div class="compress-container">
+          <button id="compress-btn">Comprimir imagenes</button> 
+          <button id="clean-btn">Limpiar selección</button> 
+        </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script type="module" src="src/files.js"></script>
+</html>
