@@ -10,15 +10,25 @@ let files;
 progressBar.style.display = 'none';
 compressBtn.style.display = 'none';
 
+document.querySelector("#preview").addEventListener('click', function(e) {
+    if (e.target.classList.contains('img-rmv')) {
+        console.log(e.target);
+        const index = e.target.getAttribute('data-index'); // Obtiene el índice del atributo data-index
+        const imgContainer = document.getElementById(`img-${index}`);
+        imgContainer.remove();
+    }    
+});
+
 button.addEventListener('click', (e) => {
     input.click();
 });
 
 input.addEventListener('change', (e) => {
-    files = this.files;
-    dropArea.classList.add('active');
+    files = e.target.files;
     showFiles(files);
     dropArea.classList.remove('active');
+    progressBar.style.display = 'block';
+    compressBtn.style.display = 'block';
 });
 
 dropArea.addEventListener('dragover', (e) => {
@@ -51,24 +61,26 @@ cleanBtn.addEventListener('click', () => {
     files = [];
 });
 
+
 function showFiles(files) {
     if (files.length > 0) {
         compressBtn.style.display = 'block';
     }
+    let index = 0;
 
     if (files.length === undefined) {
-        processFile(files);
+        processFile(files, index);
     } else {
         for (const file of files) {
-            processFile(file);
+            processFile(file, index);
+            index++;
         }
     }
 }
 
-function processFile(file) {
+function processFile(file, index) {
     const docType = file.type;
     const validExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
-
     
     if (validExtensions.includes(docType)) {
         const reader = new FileReader();
@@ -77,12 +89,13 @@ function processFile(file) {
         reader.addEventListener('load', e => {
             const fileUrl = reader.result;
             const img = `
-                <div class="img-container" id="${id}">
+                <div class="img-container" id="img-${index}">
                     <img src="${fileUrl}" alt="${file.name}" width="50">
                     <span class="img-name">${file.name}</span>
+                    <span class="img-rmv" data-index="${index}">x</span>
                 </div>
             `;
-
+            console.log(index);
             document.querySelector("#preview").innerHTML += img;
         });
         reader.readAsDataURL(file);
@@ -156,7 +169,3 @@ async function compressAndDownloadImages(files) {
         console.error('Error generating ZIP file:', error);
     }
 }
-
-
-  
-

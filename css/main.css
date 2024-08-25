@@ -91,13 +91,11 @@ body{
   
 .img-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: white;
-    margin-left: 10px;
-    margin-right: 10px;
     margin-bottom: 10px;
     height: 50px;
-    width: 90%;
+    width: 100%;
 }
 
 .img-name{
@@ -109,6 +107,14 @@ body{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.img-rmv {
+    align-self: center;
+    background-color: white;
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
 }
   
 .main {
