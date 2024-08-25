@@ -17,7 +17,7 @@
       "target": "nsis"
     }
   },
-  "author": "",
+  "author": "wxzzxrdz",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
